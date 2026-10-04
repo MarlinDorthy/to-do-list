@@ -8,13 +8,22 @@ const sortButton = document.getElementById('sort-btn');
 document.addEventListener('DOMContentLoaded', loadTasks);
 
 // Event listener for adding tasks
-addButton.addEventListener('click', () => {
+function addTaskFromInput() {
     const taskText = inputField.value;
 
     if (taskText.trim() !== '') {
         addTask(taskText);
         inputField.value = ''; // Clear input after adding
         saveTasks(); // Save to local storage
+    }
+}
+
+addButton.addEventListener('click', addTaskFromInput);
+
+// Allow users to add a task by pressing Enter
+inputField.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        addTaskFromInput();
     }
 });
 
